@@ -40,15 +40,3 @@ jobs:
         with:
           name: qxd-msix
           path: qxd.msix
-      - name: Query DeepSeek for QxD build context
-        env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-        run: |
-          curl -s -X POST https://api.deepseek.com/chat/completions \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $DEEPSEEK_API_KEY" \
-            -d '{
-              "model": "deepseek-chat",
-              "messages": [{"role": "user", "content": "Generate a summary of the QxD MSIX build."}],
-              "stream": false
-            }'
